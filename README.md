@@ -2,6 +2,10 @@
 
 just a quick little project to get a typescript env with testing off the ground. see the playground folder.
 
+## Mocking API's
+
+This project is using a tool to mock RESTful API endpoints. See: [https://github.com/vbenjs/vite-plugin-mock](https://github.com/vbenjs/vite-plugin-mock)
+
 
 
 # BOILERPLATE README:
