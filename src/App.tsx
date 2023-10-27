@@ -1,10 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { GiphyApiContext } from "./playground/GiphyApiContextProvider";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [apiResult, setApiResult] = useState({});
+
+  // Simple example where we're mocking the result of a simple API call
+  useEffect(() => {
+    fetch("/api/test", {
+      mode: "no-cors",
+    })
+      .then((res) => res.json())
+      .then((data) => setApiResult(data));
+  }, []);
 
   return (
     <>
@@ -28,8 +39,18 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <p>{JSON.stringify(apiResult)}</p>
+      <GiphyApiContext.Consumer>
+        {(value: undefined | { data: [] }) =>
+          value?.data?.map(
+            (item: undefined | { images: { original: { url: string } } }) => (
+              <img src={item?.images.original.url} alt="Gif" />
+            ),
+          )
+        }
+      </GiphyApiContext.Consumer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
