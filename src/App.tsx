@@ -39,15 +39,20 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <p>{JSON.stringify(apiResult)}</p>
+      <p>{JSON.stringify(apiResult).substring(0, 200)}</p>
       <GiphyApiContext.Consumer>
-        {(value: undefined | { data: [] }) =>
-          value?.data?.map(
-            (item: undefined | { images: { original: { url: string } } }) => (
-              <img src={item?.images.original.url} alt="Gif" />
-            ),
-          )
-        }
+        {(value: undefined | { data: [] }) => (
+          <div className="container">
+            {value?.data?.map(
+              (
+                item: undefined | { images: { original: { url: string } } },
+                index,
+              ) => (
+                <img key={index} src={item?.images.original.url} alt="Gif" />
+              ),
+            )}
+          </div>
+        )}
       </GiphyApiContext.Consumer>
     </>
   );
