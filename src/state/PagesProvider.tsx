@@ -13,21 +13,30 @@ This component can wrap around another component and then consumer can be called
 
 furthermore, the request here is being proxied.
  */
-export const PagesContextProvider = (props) => {
+export const PagesContextProvider = (props: {
+  children: React.ReactElement;
+}) => {
   const [currentPages, setCurrentPages] = useState({});
 
   useEffect(() => {
     const importedPages = import.meta.glob("../pages/*.tsx");
 
     for (const modulePath in importedPages) {
-      importedPages[modulePath]().then(
-        ({ pageInterface: { title, component } }) => {
-          setCurrentPages((currentPages) => ({
-            ...currentPages,
-            [title]: component,
-          }));
-        },
-      );
+      importedPages[modulePath]().then((imported) => {
+        const {
+          pageInterface: { title, component },
+        } = imported as {
+          pageInterface: {
+            title: string;
+            component: React.ComponentType<unknown>;
+          };
+        };
+
+        setCurrentPages((currentPages) => ({
+          ...currentPages,
+          [title]: component,
+        }));
+      });
     }
   }, []);
 

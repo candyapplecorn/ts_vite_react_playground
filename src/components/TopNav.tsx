@@ -11,15 +11,18 @@ export default function TopNav() {
     <div className={styles.topnav}>
       <div className={styles.left}></div>
       <div className={styles.right}>
-        {Object.entries(availablePages).map(([key, value]) => (
-          <span
-            className={styles.pagelink}
-            key={key}
-            onClick={() => setCurrentPage(key)}
-          >
-            {key === currentPageTitle ? <b>{key}</b> : <>{key}</>}
-          </span>
-        ))}
+        {Object.entries(availablePages).map((entry) => {
+          const key = entry[0];
+          return (
+            <span
+              className={styles.pagelink}
+              key={key}
+              onClick={() => setCurrentPage(key)}
+            >
+              {key === currentPageTitle ? <b>{key}</b> : <>{key}</>}
+            </span>
+          );
+        })}
       </div>
     </div>
   );

@@ -18,7 +18,9 @@ function setCurrentPageWithLocalStorage(
   setter(newPage);
 }
 
-export const CurrentPageContextProvider = (props) => {
+export const CurrentPageContextProvider = (props: {
+  children: React.ReactElement;
+}) => {
   const [currentPage, setCurrentPage] = useState(
     localStorage.getItem(CURRENT_PAGE) || defaultPage,
   );

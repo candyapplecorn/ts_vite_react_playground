@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { GIPHY_SEARCH_API_URL } from "../../fixtures/urls";
 
-export const GiphyApiContext = React.createContext({});
+interface GiphyItem {
+  images: {
+    original: {
+      url: string;
+    };
+  };
+}
+
+interface GiphyContextType {
+  data: GiphyItem[];
+}
+
+export const GiphyApiContext = React.createContext<GiphyContextType>({
+  data: [],
+});
 
 /*
 This component can wrap around another component and then consumer can be called like so:
@@ -12,8 +26,10 @@ This component can wrap around another component and then consumer can be called
 
 furthermore, the request here is being proxied.
  */
-export const GiphyApiContextProvider = (props) => {
-  const [giphyResult, setGiphyResult] = useState({});
+export const GiphyApiContextProvider = (props: {
+  children: React.ReactElement;
+}) => {
+  const [giphyResult, setGiphyResult] = useState({ data: [] });
 
   useEffect(() => {
     fetch(GIPHY_SEARCH_API_URL)

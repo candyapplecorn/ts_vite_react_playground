@@ -26,7 +26,7 @@ function countDiceSymbols(numbers: number[]): Map<number, number> {
   return symbolCounts;
 }
 
-function getDiceSides(sides): number[] {
+function getDiceSides(sides: number): number[] {
   return [...new Array(sides)].map((_, index) => index + 1);
 }
 

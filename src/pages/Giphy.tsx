@@ -29,16 +29,11 @@ function Giphy() {
     <>
       <p>{JSON.stringify(apiResult).substring(0, 200)}</p>
       <GiphyApiContext.Consumer>
-        {(value: undefined | { data: [] }) => (
+        {(value) => (
           <div className="container">
-            {value?.data?.map(
-              (
-                item: undefined | { images: { original: { url: string } } },
-                index,
-              ) => (
-                <img key={index} src={item?.images.original.url} alt="Gif" />
-              ),
-            )}
+            {value.data.map((item, index) => (
+              <img key={index} src={item.images.original.url} alt="Gif" />
+            ))}
           </div>
         )}
       </GiphyApiContext.Consumer>
