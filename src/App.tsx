@@ -10,11 +10,13 @@ function App() {
 
   // Simple example where we're mocking the result of a simple API call
   useEffect(() => {
-    fetch("/api/test", {
+    fetch("https://api.apis.guru/v2/list.json", {
       mode: "no-cors",
+      cors: "no-cors",
     })
       .then((res) => res.json())
-      .then((data) => setApiResult(data));
+      .then((data) => setApiResult(data))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
