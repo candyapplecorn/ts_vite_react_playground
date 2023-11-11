@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { defaultPage } from "../constants/default-page";
+import { CURRENT_PAGE } from "../constants/local-storage";
 
 export const CurrentPageContext = React.createContext<{
   currentPageTitle: string;
@@ -9,12 +10,26 @@ export const CurrentPageContext = React.createContext<{
   setCurrentPage: () => {},
 });
 
+function setCurrentPageWithLocalStorage(
+  setter: (currentPage: string) => void,
+  newPage: string,
+) {
+  localStorage.setItem(CURRENT_PAGE, newPage);
+  setter(newPage);
+}
+
 export const CurrentPageContextProvider = (props) => {
-  const [currentPage, setCurrentPage] = useState(defaultPage);
+  const [currentPage, setCurrentPage] = useState(
+    localStorage.getItem(CURRENT_PAGE) || defaultPage,
+  );
 
   return (
     <CurrentPageContext.Provider
-      value={{ currentPageTitle: currentPage, setCurrentPage }}
+      value={{
+        currentPageTitle: currentPage,
+        setCurrentPage: (newPage: string) =>
+          setCurrentPageWithLocalStorage(setCurrentPage, newPage),
+      }}
     >
       {props.children}
     </CurrentPageContext.Provider>
