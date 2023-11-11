@@ -1,0 +1,26 @@
+import React, { useContext } from "react";
+import { PagesContext } from "../state/PagesProvider";
+import styles from "./top-nav.module.less";
+import { CurrentPageContext } from "../state/CurrentPageProvider";
+
+export default function TopNav() {
+  const availablePages = useContext(PagesContext);
+  const { currentPageTitle, setCurrentPage } = useContext(CurrentPageContext);
+
+  return (
+    <div className={styles.topnav}>
+      <div className={styles.left}></div>
+      <div className={styles.right}>
+        {Object.entries(availablePages).map(([key, value]) => (
+          <span
+            className={styles.pagelink}
+            key={key}
+            onClick={() => setCurrentPage(key)}
+          >
+            {key === currentPageTitle ? <b>{key}</b> : <>{key}</>}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}

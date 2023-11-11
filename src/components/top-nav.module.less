@@ -1,0 +1,33 @@
+// use grid css to make a top nav bar which has a left and right section.
+.topnav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "left right";
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-bottom: 0.125rem solid black;
+}
+
+.left {
+  grid-area: left;
+  float: left;
+  min-height: 1rem;
+}
+
+.right {
+  grid-area: right;
+  float: right;
+  min-height: 1rem;
+
+  display: flex;
+  justify-content: end;
+  padding-right: 3rem;
+}
+
+.pagelink {
+  padding: 0 0.5rem;
+}
