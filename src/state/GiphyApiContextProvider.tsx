@@ -18,7 +18,8 @@ export const GiphyApiContextProvider = (props) => {
   useEffect(() => {
     fetch(GIPHY_SEARCH_API_URL)
       .then((res) => res.json())
-      .then((data) => setGiphyResult(data));
+      .then((data) => setGiphyResult(data))
+      .catch((err) => console.error(err));
   }, []);
 
   return (

@@ -1,4 +1,3 @@
-import React from "react";
 import AboutMDX from "../mdx/About.mdx";
 import { PageInterface } from "./interface";
 import WrapWithMDXStyle from "../mdx/WrapWithMDXStyle";

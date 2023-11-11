@@ -1,4 +1,3 @@
-import React from "react";
 import { PageInterface } from "./interface";
 import styles from "./dice-calculator.module.less";
 

@@ -1,3 +1,3 @@
-import { pageInterface } from "../pages/ViteBoilerplate";
+import { pageInterface } from "../pages/About";
 
 export const defaultPage = pageInterface.title;

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { PagesContext } from "../state/PagesProvider";
 import styles from "./top-nav.module.less";
 import { CurrentPageContext } from "../state/CurrentPageProvider";
