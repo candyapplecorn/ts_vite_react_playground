@@ -1,6 +1,6 @@
 import { useState } from "react";
 import viteLogo from "/vite.svg";
-import reactLogo from "../assets/react.svg";
+import reactLogo from "/src/assets/react.svg";
 import { PageInterface } from "./interface";
 
 type ViteBoilerPlateProps = object;
