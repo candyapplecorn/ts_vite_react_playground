@@ -1,48 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { getPagesIterator } from "./get-pages-iterator";
+import { PageInterface } from "../pages/interface";
 
-export const PagesContext = React.createContext<
-  Record<string, React.ComponentType<unknown>>
->({});
-
-/*
-This component can wrap around another component and then consumer can be called like so:
-
-      <CurrentPageContext.Consumer>
-        {(value) => <p>{JSON.stringify(value)}</p>}
-      </CurrentPageContext.Consumer>
-
-furthermore, the request here is being proxied.
- */
-export const PagesContextProvider = (props: {
-  children: React.ReactElement;
-}) => {
-  const [currentPages, setCurrentPages] = useState({});
+export function usePages() {
+  const [pages, setPages] = useState<
+    Record<string, React.ComponentType<unknown>>
+  >({});
 
   useEffect(() => {
-    const importedPages = import.meta.glob("../pages/*.tsx");
+    getPagesIterator().then((loadedPages: PageInterface<unknown>[]) => {
+      const pagesObject = loadedPages.reduce(
+        (
+          acc: Record<string, React.ComponentType<unknown>>,
+          page: PageInterface<unknown>,
+        ) => {
+          if (!page.hideFromMenu) {
+            acc[page.title] = page.component;
+          }
+          return acc;
+        },
+        {},
+      );
 
-    for (const modulePath in importedPages) {
-      importedPages[modulePath]().then((imported) => {
-        const {
-          pageInterface: { title, component },
-        } = imported as {
-          pageInterface: {
-            title: string;
-            component: React.ComponentType<unknown>;
-          };
-        };
-
-        setCurrentPages((currentPages) => ({
-          ...currentPages,
-          [title]: component,
-        }));
-      });
-    }
+      setPages(pagesObject);
+    });
   }, []);
 
-  return (
-    <PagesContext.Provider value={currentPages}>
-      {props.children}
-    </PagesContext.Provider>
-  );
-};
+  return pages;
+}
