@@ -19,7 +19,7 @@ getPagesIterator().then((pages) => {
           element: <About />,
         },
         ...pages.map(({ title, component: Component }) => ({
-          path: `/${title}`,
+          path: title,
           element: <Component />,
         })),
       ],
