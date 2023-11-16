@@ -9,7 +9,6 @@ import { getPagesIterator } from "./state/get-pages-iterator";
 getPagesIterator().then((pages) => {
   const router = createBrowserRouter([
     {
-      path: "/ts_vite_react_playground",
       element: <Root />,
       errorElement: <ErrorPage />,
       children: pages.map(({ title, component: Component }) => ({
