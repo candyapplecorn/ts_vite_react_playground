@@ -10,7 +10,7 @@ import About from "./pages/About";
 getPagesIterator().then((pages) => {
   const router = createHashRouter([
     {
-      path: "/",
+      path: "/*",
       element: <Root />,
       errorElement: <ErrorPage />,
       children: [
