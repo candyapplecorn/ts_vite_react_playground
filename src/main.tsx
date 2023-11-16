@@ -8,23 +8,28 @@ import { getPagesIterator } from "./state/get-pages-iterator";
 import About from "./pages/About";
 
 getPagesIterator().then((pages) => {
-  const router = createHashRouter([
+  const router = createHashRouter(
+    [
+      {
+        path: "/",
+        element: <Root />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <About />,
+          },
+          ...pages.map(({ title, component: Component }) => ({
+            path: title,
+            element: <Component />,
+          })),
+        ],
+      },
+    ],
     {
-      path: "/*",
-      element: <Root />,
-      errorElement: <ErrorPage />,
-      children: [
-        {
-          index: true,
-          element: <About />,
-        },
-        ...pages.map(({ title, component: Component }) => ({
-          path: title,
-          element: <Component />,
-        })),
-      ],
+      basename: "/",
     },
-  ]);
+  );
 
   // figure out how to put "infinite" contexts into one master context provider so there isn't tons of nesting here
   return ReactDOM.createRoot(document.getElementById("root")!).render(
