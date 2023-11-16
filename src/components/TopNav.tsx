@@ -2,6 +2,7 @@ import { usePages } from "../state/PagesProvider";
 import styles from "./top-nav.module.less";
 import { useCurrentPage } from "../state/CurrentPageProvider";
 import { useNavigate } from "react-router-dom";
+import {getHashRoute} from "../routes/get-hash-route";
 
 export default function TopNav() {
   const { currentPageTitle, setCurrentPage } = useCurrentPage();
@@ -21,7 +22,7 @@ export default function TopNav() {
               key={key}
               onClick={() => {
                 setCurrentPage(key);
-                navigate(key);
+                navigate(getHashRoute(key));
               }}
             >
               {key === currentPageTitle ? <b>{key}</b> : <>{key}</>}
