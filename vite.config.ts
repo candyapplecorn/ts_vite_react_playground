@@ -13,7 +13,7 @@ export default defineConfig({
       cors: false,
     }),
   ],
-  base: "./", // for github deployment
+  base: "ts_vite_react_playground", // for github deployment
   // The fields defined here can also be used in mock. See: https://github.com/pengzhanbo/vite-plugin-mock-dev-server
   define: {},
   server: {
