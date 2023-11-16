@@ -18,10 +18,12 @@ getPagesIterator().then((pages) => {
           {
             index: true,
             element: <About />,
+            errorElement: <ErrorPage />,
           },
           ...pages.map(({ title, component: Component }) => ({
             path: title,
             element: <Component />,
+            errorElement: <ErrorPage />,
           })),
         ],
       },
