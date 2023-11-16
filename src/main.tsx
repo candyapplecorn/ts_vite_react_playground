@@ -3,9 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
-import ErrorPage from "./pages/error";
 import { getPagesIterator } from "./state/get-pages-iterator";
-import About from "./pages/About";
 
 getPagesIterator().then((pages) => {
   const router = createHashRouter(
@@ -13,17 +11,10 @@ getPagesIterator().then((pages) => {
       {
         path: "/",
         element: <Root />,
-        errorElement: <ErrorPage />,
         children: [
-          {
-            index: true,
-            element: <About />,
-            errorElement: <ErrorPage />,
-          },
           ...pages.map(({ title, component: Component }) => ({
             path: title,
             element: <Component />,
-            errorElement: <ErrorPage />,
           })),
         ],
       },
