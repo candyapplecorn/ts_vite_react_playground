@@ -1,14 +1,8 @@
 import "./App.css";
-import TopNav from "./components/TopNav";
-import Body from "./components/Body";
+import FlipCard from "./pages/flip-card";
 
 function App() {
-  return (
-    <section>
-      <TopNav />
-      <Body />
-    </section>
-  );
+  return <FlipCard />;
 }
 
 export default App;
