@@ -1,0 +1,337 @@
+@import "work-sans.module.less";
+
+.flip-card {
+  --yellow: #e7ab12ff;
+  --font-color: #44352b;
+
+  --desktop-breakpoint: 769px;
+  --tablet-breakpoint: 768px;
+  --phone-breakpoint: 390px;
+
+  // DESKTOP
+  @media (min-width: 769px) {
+    --height: 304px;
+    --width: 304px;
+    --min-height: 278px;
+    --min-width: 278px;
+    --title-font-size: 24px;
+    --font-size: 20px;
+    --img-padding-right: 8px;
+    --back-card-padding: 20px;
+    --front-card-name-padding: 16px;
+    --image-height-ratio: 80%;
+  }
+
+  // TABLET
+  @media (max-width: 768px) {
+    --height: 255px;
+    --width: 255px;
+    --min-height: 200px;
+    --min-width: 200px;
+    --title-font-size: 24px;
+    --font-size: 20px;
+    --img-padding-right: 0px;
+    --back-card-padding: 18px;
+    --front-card-name-padding: 16px;
+    --image-height-ratio: 80%;
+  }
+
+  // PHONE
+  @media (max-width: 390px) {
+    --height: 173px;
+    --width: 173px;
+    --min-height: 173px;
+    --min-width: 173px;
+    --title-font-size: 17px;
+    --font-size: 16px;
+    --img-padding-right: 0px;
+    --back-card-padding: 8px;
+    --front-card-name-padding: 8px;
+    --image-height-ratio: 80%;
+  }
+
+  height: var(--height);
+  width: var(--width);
+  min-height: var(--min-height);
+  min-width: var(--min-width);
+
+  background-color: var(--yellow);
+
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  color: var(--font-color);
+
+  // FLIP CSS
+  // END CLIP CSS
+
+  .flip-card-back {
+    padding: var(--back-card-padding);
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+
+    height: 100%;
+
+    .title {
+      font-size: var(--title-font-size);
+      font-weight: 900;
+    }
+
+    .itinerary {
+      font-family: Helvetica, serif;
+
+      span {
+        display: block;
+        text-align: start;
+      }
+
+      .stage {
+        font-weight: 700;
+      }
+
+    }
+
+    .media-links {
+      display: flex;
+      justify-content: start;
+
+      img {
+        height: calc(2 * var(--font-size));
+        width: calc(2 * var(--font-size));
+        padding-right: calc(var(--img-padding-right));
+      }
+
+      @media (min-width: 391px) and (max-width: 768px) {
+        .media-links img {
+          padding-right: calc(var(--img-padding-right) / 2);
+        }
+      }
+    }
+  }
+
+  .flip-card-front {
+    height: 100%;
+
+    img {
+      // css rules for making the image fit to the dimensions of the container
+      height: var(--image-height-ratio);
+      width: 100%;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      border-radius: 10px 10px 0px 0px;
+    }
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    min-height: calc(100% - 2 * var(--font-size));
+    min-width: calc(100% - 2 * var(--font-size));
+  }
+
+  .flip-card-front .performer-name {
+    font-family: Helvetica,
+    monospace;
+    font-weight: 600;
+    color: black;
+    font-size: var(--font-size);
+
+    margin-top: -8px;
+    height: calc(100% - var(--image-height-ratio));
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: var(--front-card-name-padding);
+  }
+
+  // FLIP CODE
+
+  //.flip-card {
+  //  //perspective: 1000px; /* Provides depth; feel free to adjust */
+  //  width: var(--width); /* Example width, adjust as necessary */
+  //  height: var(--height); /* Example height, adjust as necessary */
+  //}
+
+  /* Ensures the .card flips around its Y axis */
+
+  //.flip-card:hover .card {
+  //  transform: rotateY(180deg);
+  //}
+  //
+  //.card {
+  //  transform-style: preserve-3d;
+  //  transition: transform 0.8s;
+  //  width: 100%;
+  //  height: 100%;
+  //}
+  //
+  //.flip-card-front,
+  //.flip-card-back {
+  //  position: absolute;
+  //  width: 100%;
+  //  height: 100%;
+  //  backface-visibility: hidden; /* Prevents the back from being visible when it's not facing the viewer */
+  //  display: flex;
+  //  align-items: center;
+  //  justify-content: center;
+  //}
+  //
+  //.flip-card-back {
+  //  transform: rotateY(180deg); /* Flips the back so it faces away initially */
+  //}
+
+  // END FLIP CODE
+
+  //.flip-card-back {
+  //  .instagram-body {
+  //    display: flex;
+  //    justify-content: center;
+  //    align-items: center;
+  //    height: 100vh;
+  //
+  //    .logo {
+  //      width: 200px;
+  //      height: 200px;
+  //      background: white;
+  //      border-radius: 35px;
+  //      position: relative;
+  //      transform: rotate(270deg);
+  //    }
+  //
+  //    .logo:hover {
+  //      animation: changeColor 3.5s ease-in-out infinite;
+  //      background: linear-gradient(to left, #8d136f, #ffec5a),
+  //      linear-gradient(to left, #e563ff, #ffcc51);
+  //    }
+  //
+  //    @keyframes changeColor {
+  //      from {
+  //        background: red;
+  //        box-shadow: 0 0 5px black;
+  //      }
+  //      20% {
+  //        background: rgb(0, 0, 0);
+  //        box-shadow: 0 0 5px red;
+  //      }
+  //      40% {
+  //        background: rgb(0, 175, 0);
+  //        box-shadow: 0 0 5px blue;
+  //      }
+  //      60% {
+  //        background: purple;
+  //        box-shadow: 0 0 5px green;
+  //      }
+  //      80% {
+  //        background: rgb(19, 19, 255);
+  //        box-shadow: 0 0 5px purple;
+  //      }
+  //      to {
+  //        background: linear-gradient(to left, #8d136f, #ffec5a),
+  //        linear-gradient(to left, #e563ff, #ffcc51);
+  //        box-shadow: 0 0 5px orangered;
+  //      }
+  //    }
+  //
+  //    .logo::before,
+  //    .logo::after {
+  //      position: absolute;
+  //      left: 50%;
+  //      top: 50%;
+  //      transform: translate(-50%, -50%);
+  //    }
+  //
+  //    .logo::before {
+  //      content: ".";
+  //      font-size: 128px;
+  //      color: white;
+  //      text-align: end;
+  //      width: 130px;
+  //      height: 130px;
+  //      border-radius: 35px;
+  //      border: 13px solid white;
+  //    }
+  //
+  //    .logo::after {
+  //      content: "";
+  //
+  //      width: 60px;
+  //      height: 60px;
+  //      border-radius: 100%;
+  //      border: 18px solid white;
+  //    }
+  //  }
+  //
+  //  .spotify {
+  //    display: grid;
+  //    place-items: center;
+  //
+  //    position: relative;
+  //    width: 8rem;
+  //    height: 8rem;
+  //    border-radius: 50%;
+  //    background: black;
+  //    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  //    display: grid;
+  //    place-items: center;
+  //    transform: scale(0.2) rotate(9deg);
+  //
+  //    .line {
+  //      border: var(--line) solid transparent;
+  //      border-top: var(--line) solid var(--yellow);
+  //      border-radius: 50%;
+  //      height: 2rem;
+  //      width: var(--width);
+  //      position: absolute;
+  //      margin-top: var(--margin-top);
+  //
+  //      &:before,
+  //      &:after {
+  //        content: "";
+  //        width: calc(var(--line) - 1px);
+  //        height: calc(var(--line) - 2px);
+  //        background-color: var(--yellow);
+  //        border-radius: 50%;
+  //        position: absolute;
+  //      }
+  //
+  //      &:before {
+  //        top: var(--top);
+  //        left: var(--horizontal);
+  //      }
+  //
+  //      &:after {
+  //        top: var(--top);
+  //        right: var(--horizontal);
+  //      }
+  //
+  //      &.top {
+  //        --width: 5rem;
+  //        --line: 1rem;
+  //        --top: -5px;
+  //        --horizontal: -6px;
+  //      }
+  //
+  //      &.middle {
+  //        --width: 4rem;
+  //        --line: 0.75rem;
+  //        --margin-top: 2.5rem;
+  //        --top: -2px;
+  //        --horizontal: -4px;
+  //      }
+  //
+  //      &.bottom {
+  //        --width: 3rem;
+  //        --line: 0.5rem;
+  //        --margin-top: 4.5rem;
+  //        --top: 0px;
+  //        --horizontal: 0px;
+  //      }
+  //    }
+  //  }
+  //}
+}
