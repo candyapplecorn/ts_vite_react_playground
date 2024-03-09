@@ -17,13 +17,15 @@ export default function FlipCard() {
               src="https://static.wixstatic.com/media/753990_862156d001fb426693c16a95aa45d86d~mv2.jpg/v1/crop/x_101,y_57,w_500,h_387/fill/w_412,h_322,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/buffalo-nichols-1-700x500.jpg"
               alt=""
             />
-            <div className={styles["performer-name"]}>BUFFALO NICHOLS</div>
+            <div className={styles["performer-name"]}>Carrie Rodriguez</div>
           </div>
 
           <div className={styles["flip-card-back"]}>
-            <div className={styles["title"]}>BAHAMAS</div>
+            <div className={styles["title"]}>Carrie Rodriguez</div>
             <div className={styles["itinerary"]}>
-              <span className={styles["stage"]}>Swan Stage</span>
+              <span className={styles["stage"]}>
+                Chris Stone Kingfish Ingram
+              </span>
               <span className={styles["date"]}>Sat, Sep 30</span>
               <span className={styles["time"]}>2:05 - 2:55</span>
             </div>
